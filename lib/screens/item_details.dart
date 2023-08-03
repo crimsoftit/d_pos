@@ -1,9 +1,11 @@
-import 'dart:async';
+//import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:d_pos/model/stock_model.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+//import 'package:sqflite/sqflite.dart';
+import 'package:d_pos/models/stock_model.dart';
 import 'package:d_pos/db/stock_db.dart';
-import 'package:intl/intl.dart' as intl;
+//import 'package:intl/intl.dart' as intl;
 
 // ignore: must_be_immutable
 class ItemDetails extends StatefulWidget {
@@ -25,8 +27,11 @@ class ItemDetailsState extends State<ItemDetails> {
   String appBarTitle;
   StockModel stock;
 
+  String barcodeValue = "";
+
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TextEditingController codeController = TextEditingController();
 
   ItemDetailsState(this.stock, this.appBarTitle);
 
@@ -108,6 +113,23 @@ class ItemDetailsState extends State<ItemDetails> {
 
             // fourth element
             Padding(
+              padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+              child: TextField(
+                controller: codeController,
+                style: textStyle,
+                onChanged: (value) {
+                  debugPrint('something changed in the description textfield');
+                },
+                decoration: InputDecoration(
+                    labelText: 'barcode value',
+                    labelStyle: textStyle,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0))),
+              ),
+            ),
+
+            // fifth element
+            Padding(
               padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: Row(
                 children: <Widget>[
@@ -144,6 +166,7 @@ class ItemDetailsState extends State<ItemDetails> {
                       onPressed: () {
                         setState(() {
                           debugPrint("delete button clicked");
+                          _delete();
                         });
                       },
                       child: const Text(
@@ -155,10 +178,54 @@ class ItemDetailsState extends State<ItemDetails> {
                 ],
               ),
             ),
+
+            // fifth element
+
+            Padding(
+              padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+              child: Row(
+                children: <Widget>[
+                  // scanner button
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromARGB(255, 135, 38, 6),
+                          elevation: 0),
+                      onPressed: () {
+                        scanBarcodeNormal();
+                      },
+                      child: const Text(
+                        "scan bar code",
+                        textScaleFactor: 1.2,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 5.0,
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
     );
+  }
+
+  void scanBarcodeNormal() async {
+    String scanResults;
+
+    try {
+      scanResults = await FlutterBarcodeScanner.scanBarcode(
+          '#ff6666', 'cancel', true, ScanMode.BARCODE);
+    } on PlatformException {
+      scanResults = "ERROR!! failed to get platform version";
+    }
+    setState(() {
+      barcodeValue = scanResults;
+      codeController.text = barcodeValue;
+    });
   }
 
   void moveToLastScreen() {

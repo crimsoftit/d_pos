@@ -1,8 +1,9 @@
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:d_pos/model/stock_model.dart';
+import 'package:d_pos/models/stock_model.dart';
 //import 'package:d_pos/model/stock_item.dart';
 
 class StockDatabase {

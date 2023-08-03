@@ -1,12 +1,15 @@
 // ignore_for_file: unnecessary_null_comparison
 
 import 'dart:async';
+//import 'package:d_pos/screens/scan_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:d_pos/db/stock_db.dart';
-import 'package:d_pos/model/stock_model.dart';
+import 'package:d_pos/models/stock_model.dart';
 //import 'package:d_pos/model/stock_item.dart';
 import 'package:d_pos/screens/item_details.dart';
+
+import 'b_scanner.dart';
 
 class ItemsList extends StatefulWidget {
   const ItemsList({Key? key}) : super(key: key);
@@ -38,14 +41,6 @@ class ItemsListState extends State<ItemsList> {
     super.dispose();
   }
 
-  // Future refreshStockList() async {
-  //   setState(() => isLoading = true);
-  //   stockItems = await StockDatabase.instance.getStockMapList();
-  //   setState(() {
-  //     isLoading = false;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     if (stockItems == null) {
@@ -68,8 +63,8 @@ class ItemsListState extends State<ItemsList> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           debugPrint('FAB clicked');
-          //navigateToItemDetails('add stock item');
           navigateToDetail(StockModel('', 2, ''), 'add stock item...');
+          //navigateToScanner();
         },
         tooltip: 'add stock item...',
         child: const Icon(Icons.add),
@@ -105,7 +100,7 @@ class ItemsListState extends State<ItemsList> {
                 }),
             onTap: () {
               debugPrint('listtile tapped');
-              navigateToDetail(this.stockItems[position], 'edit stock item...');
+              navigateToDetail(stockItems[position], 'edit stock item...');
             },
           ),
         );
@@ -124,7 +119,7 @@ class ItemsListState extends State<ItemsList> {
   }
 
   void _showSnackBar(BuildContext context, String message) {
-    final snackBar = SnackBar(content: Text(message));
+    //final snackBar = SnackBar(content: Text(message));
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: const Text('snack'),
       duration: const Duration(seconds: 1),
@@ -166,6 +161,13 @@ class ItemsListState extends State<ItemsList> {
     updateListView();
   }
 
+  void navigateToScanner() async {
+    await Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return TrackAsset();
+    }));
+    updateListView();
+  }
+
   void updateListView() {
     final Future<Database> dbFuture =
         StockDatabase.instance.initializeDatabase();
@@ -175,7 +177,7 @@ class ItemsListState extends State<ItemsList> {
       stockListFuture.then((stockItems) {
         setState(() {
           this.stockItems = stockItems;
-          this.count = stockItems.length;
+          count = stockItems.length;
         });
       });
     });
