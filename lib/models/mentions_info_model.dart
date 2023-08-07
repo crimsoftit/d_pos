@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class DiscussionInfoModel {
+class MentionsInfoModel {
   final String? imageSrc, name, date;
   final Color? color;
 
-  DiscussionInfoModel({
+  MentionsInfoModel({
     this.imageSrc,
     this.name,
     this.date,

@@ -1,5 +1,6 @@
 import 'package:d_pos/constants/constants.dart';
 import 'package:d_pos/screens/components/drawer_list_tile.dart';
+import 'package:d_pos/screens/items_list.dart';
 import 'package:flutter/material.dart';
 
 class DrawerMenu extends StatelessWidget {
@@ -19,7 +20,14 @@ class DrawerMenu extends StatelessWidget {
           DrawerListTile(
               title: 'messages', svgSrc: 'icons/Message.svg', tap: () {}),
           DrawerListTile(
-              title: 'inventory', svgSrc: 'icons/inventory.svg', tap: () {}),
+              title: 'inventory',
+              svgSrc: 'icons/inventory.svg',
+              tap: () async {
+                await Navigator.push(context,
+                    MaterialPageRoute(builder: (context) {
+                  return const ItemsList();
+                }));
+              }),
           DrawerListTile(title: 'sales', svgSrc: 'icons/stock.svg', tap: () {}),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: appPadding * 2),
