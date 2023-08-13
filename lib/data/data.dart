@@ -1,65 +1,58 @@
 import 'package:d_pos/constants/constants.dart';
 import 'package:d_pos/models/analytic_info_model.dart';
 import 'package:d_pos/models/mentions_info_model.dart';
-import 'package:d_pos/models/mentions_info_model.dart';
 import 'package:d_pos/models/referal_info_model.dart';
-import 'package:d_pos/screens/components/mentions.dart';
 
 List analyticData = [
   AnalyticInfo(
     title: "Subscribers",
     count: 720,
-    svgSrc: "icons/Subscribers.svg",
+    svgSrc: "assets/icons/Subscribers.svg",
     color: primaryColor,
   ),
   AnalyticInfo(
     title: "Post",
     count: 820,
-    svgSrc: "icons/Post.svg",
+    svgSrc: "assets/icons/Post.svg",
     color: purple,
   ),
   AnalyticInfo(
     title: "Pages",
     count: 920,
-    svgSrc: "icons/Pages.svg",
+    svgSrc: "assets/icons/Pages.svg",
     color: orange,
   ),
   AnalyticInfo(
     title: "Comments",
     count: 920,
-    svgSrc: "icons/Comments.svg",
+    svgSrc: "assets/icons/Comments.svg",
     color: green,
   ),
 ];
 
 List discussionData = [
   MentionsInfoModel(
-    imageSrc: "images/photo1.jpg",
+    imageSrc: "assets/images/photo1.jpg",
     name: "Lutfhi Chan",
     date: "Jan 25,2021",
   ),
   MentionsInfoModel(
-    imageSrc: "images/photo2.jpg",
+    imageSrc: "assets/images/photo2.jpg",
     name: "Devi Carlos",
     date: "Jan 25,2021",
   ),
   MentionsInfoModel(
-    imageSrc: "images/photo4.jpg",
+    imageSrc: "assets/images/photo4.jpg",
     name: "Danar Comel",
     date: "Jan 25,2021",
   ),
   MentionsInfoModel(
-    imageSrc: "images/photo4.jpg",
-    name: "Karin Lumina",
-    date: "Jan 25,2021",
-  ),
-  MentionsInfoModel(
-    imageSrc: "images/photo5.jpg",
+    imageSrc: "assets/images/photo5.jpg",
     name: "Fandid Deadan",
     date: "Jan 25,2021",
   ),
   MentionsInfoModel(
-    imageSrc: "images/photo1.jpg",
+    imageSrc: "assets/images/photo1.jpg",
     name: "Lutfhi Chan",
     date: "Jan 25,2021",
   ),

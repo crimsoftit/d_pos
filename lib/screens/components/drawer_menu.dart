@@ -13,22 +13,27 @@ class DrawerMenu extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.all(appPadding),
-            child: Image.asset('images/logo_main.png'),
+            child: Image.asset('assets/images/logo_main.png'),
           ),
           DrawerListTile(
-              title: 'dashboard', svgSrc: 'icons/Dashboard.svg', tap: () {}),
+              title: 'dashboard',
+              svgSrc: 'assets/icons/Dashboard.svg',
+              tap: () {}),
           DrawerListTile(
-              title: 'messages', svgSrc: 'icons/Message.svg', tap: () {}),
+              title: 'messages',
+              svgSrc: 'assets/icons/Message.svg',
+              tap: () {}),
           DrawerListTile(
               title: 'inventory',
-              svgSrc: 'icons/inventory.svg',
+              svgSrc: 'assets/icons/inventory.svg',
               tap: () async {
                 await Navigator.push(context,
                     MaterialPageRoute(builder: (context) {
                   return const ItemsList();
                 }));
               }),
-          DrawerListTile(title: 'sales', svgSrc: 'icons/stock.svg', tap: () {}),
+          DrawerListTile(
+              title: 'sales', svgSrc: 'assets/icons/stock.svg', tap: () {}),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: appPadding * 2),
             child: Divider(
@@ -37,11 +42,15 @@ class DrawerMenu extends StatelessWidget {
             ),
           ),
           DrawerListTile(
-              title: 'statistics', svgSrc: 'icons/Statistics.svg', tap: () {}),
+              title: 'statistics',
+              svgSrc: 'assets/icons/Statistics.svg',
+              tap: () {}),
           DrawerListTile(
-              title: 'settings', svgSrc: 'icons/Settings.svg', tap: () {}),
+              title: 'settings',
+              svgSrc: 'assets/icons/Settings.svg',
+              tap: () {}),
           DrawerListTile(
-              title: 'logout', svgSrc: 'icons/Logout.svg', tap: () {}),
+              title: 'logout', svgSrc: 'assets/icons/Logout.svg', tap: () {}),
         ],
       ),
     );

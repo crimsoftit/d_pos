@@ -1,6 +1,8 @@
 import 'package:d_pos/constants/responsive.dart';
 import 'package:d_pos/screens/components/mentions.dart';
+import 'package:d_pos/screens/components/top_referrals.dart';
 import 'package:d_pos/screens/components/users.dart';
+import 'package:d_pos/screens/components/viewers.dart';
 import 'package:flutter/material.dart';
 import 'package:d_pos/constants/constants.dart';
 import 'package:d_pos/screens/components/custom_appbar.dart';
@@ -31,7 +33,7 @@ class DashboardContent extends StatelessWidget {
                       const SizedBox(
                         height: appPadding,
                       ),
-                      Users(),
+                      const Users(),
                       if (Responsive.isMobile(context))
                         const SizedBox(
                           height: appPadding,
@@ -47,6 +49,38 @@ class DashboardContent extends StatelessWidget {
                     flex: 2,
                     child: Mentions(),
                   ),
+              ],
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  flex: 5,
+                  child: Column(
+                    children: [
+                      const Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: TopReferrals(),
+                          ),
+                          Expanded(
+                            flex: 3,
+                            child: Viewers(),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: appPadding,
+                      ),
+                      if (Responsive.isMobile(context))
+                        const SizedBox(
+                          height: appPadding,
+                        ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ],

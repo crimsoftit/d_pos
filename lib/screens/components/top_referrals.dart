@@ -1,15 +1,15 @@
 import 'package:d_pos/constants/constants.dart';
 import 'package:d_pos/data/data.dart';
-import 'package:d_pos/screens/components/mentions_info_details.dart';
+import 'package:d_pos/screens/components/referral_info_details.dart';
 import 'package:flutter/material.dart';
 
-class Mentions extends StatelessWidget {
-  const Mentions({super.key});
+class TopReferrals extends StatelessWidget {
+  const TopReferrals({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 520,
+      height: 350,
       padding: const EdgeInsets.all(appPadding),
       decoration: BoxDecoration(
         color: secondaryColor,
@@ -22,19 +22,19 @@ class Mentions extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                'Mentions',
+                'top referrals...',
                 style: TextStyle(
-                  color: textColor,
-                  fontWeight: FontWeight.w600,
                   fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  color: textColor,
                 ),
               ),
               Text(
-                'View all',
+                'view all',
                 style: TextStyle(
-                  color: textColor.withOpacity(0.5),
-                  fontWeight: FontWeight.bold,
                   fontSize: 13,
+                  fontWeight: FontWeight.bold,
+                  color: textColor.withOpacity(0.5),
                 ),
               ),
             ],
@@ -46,9 +46,9 @@ class Mentions extends StatelessWidget {
             child: ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemCount: discussionData.length,
-              itemBuilder: (context, index) => MentionsInfoDetails(
-                info: discussionData[index],
+              itemCount: referalData.length,
+              itemBuilder: (context, index) => ReferralInfoDetails(
+                info: referalData[index],
               ),
             ),
           ),

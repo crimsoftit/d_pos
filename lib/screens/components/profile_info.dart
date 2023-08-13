@@ -42,7 +42,7 @@ class ProfileInfo extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(30),
                 child: Image.asset(
-                  'images/batman.jpg',
+                  'assets/images/batman.jpg',
                   width: 50,
                   height: 50,
                   fit: BoxFit.cover,
