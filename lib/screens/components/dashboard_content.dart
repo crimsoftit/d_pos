@@ -2,6 +2,7 @@ import 'package:d_pos/constants/responsive.dart';
 import 'package:d_pos/screens/components/mentions.dart';
 import 'package:d_pos/screens/components/top_referrals.dart';
 import 'package:d_pos/screens/components/users.dart';
+import 'package:d_pos/screens/components/users_by_device.dart';
 import 'package:d_pos/screens/components/viewers.dart';
 import 'package:flutter/material.dart';
 import 'package:d_pos/constants/constants.dart';
@@ -81,6 +82,15 @@ class DashboardContent extends StatelessWidget {
                     ],
                   ),
                 ),
+                if (!Responsive.isMobile(context))
+                  const SizedBox(
+                    width: appPadding,
+                  ),
+                if (!Responsive.isMobile(context))
+                  const Expanded(
+                    flex: 2,
+                    child: UsersByDevice(),
+                  ),
               ],
             ),
           ],

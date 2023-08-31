@@ -10,6 +10,7 @@ class TopReferrals extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 350,
+      margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
       padding: const EdgeInsets.all(appPadding),
       decoration: BoxDecoration(
         color: secondaryColor,

@@ -9,7 +9,8 @@ class Viewers extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 350,
-      padding: const EdgeInsets.all(appPadding / 2),
+      margin: const EdgeInsets.fromLTRB(10, 10, 0, 0),
+      padding: const EdgeInsets.all(appPadding),
       decoration: BoxDecoration(
         color: secondaryColor,
         borderRadius: BorderRadius.circular(10),
