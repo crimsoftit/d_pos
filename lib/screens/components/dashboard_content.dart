@@ -23,74 +23,94 @@ class DashboardContent extends StatelessWidget {
             const SizedBox(
               height: appPadding,
             ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Column(
               children: [
-                Expanded(
-                  flex: 5,
-                  child: Column(
-                    children: [
-                      const AnalyticCards(),
-                      const SizedBox(
-                        height: appPadding,
-                      ),
-                      const Users(),
-                      if (Responsive.isMobile(context))
-                        const SizedBox(
-                          height: appPadding,
-                        ),
-                      if (Responsive.isMobile(context)) const Mentions(),
-                    ],
-                  ),
-                ),
-                if (!Responsive.isMobile(context))
-                  const SizedBox(width: appPadding),
-                if (!Responsive.isMobile(context))
-                  const Expanded(
-                    flex: 2,
-                    child: Mentions(),
-                  ),
-              ],
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  flex: 5,
-                  child: Column(
-                    children: [
-                      const Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      flex: 5,
+                      child: Column(
                         children: [
-                          Expanded(
-                            flex: 2,
-                            child: TopReferrals(),
+                          const AnalyticCards(),
+                          const SizedBox(
+                            height: appPadding,
                           ),
-                          Expanded(
-                            flex: 3,
-                            child: Viewers(),
-                          ),
+                          const Users(),
+                          if (Responsive.isMobile(context))
+                            const SizedBox(
+                              height: appPadding,
+                            ),
+                          if (Responsive.isMobile(context)) const Mentions(),
                         ],
                       ),
-                      const SizedBox(
-                        height: appPadding,
+                    ),
+                    if (!Responsive.isMobile(context))
+                      const SizedBox(width: appPadding),
+                    if (!Responsive.isMobile(context))
+                      const Expanded(
+                        flex: 2,
+                        child: Mentions(),
                       ),
-                      if (Responsive.isMobile(context))
-                        const SizedBox(
-                          height: appPadding,
-                        ),
-                    ],
-                  ),
+                  ],
                 ),
-                if (!Responsive.isMobile(context))
-                  const SizedBox(
-                    width: appPadding,
-                  ),
-                if (!Responsive.isMobile(context))
-                  const Expanded(
-                    flex: 2,
-                    child: UsersByDevice(),
-                  ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      flex: 5,
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: appPadding,
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              if (!Responsive.isMobile(context))
+                                const Expanded(
+                                  flex: 2,
+                                  child: TopReferrals(),
+                                ),
+                              if (!Responsive.isMobile(context))
+                                const SizedBox(
+                                  width: appPadding,
+                                ),
+                              const Expanded(
+                                flex: 3,
+                                child: Viewers(),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: appPadding,
+                          ),
+                          if (Responsive.isMobile(context))
+                            const SizedBox(
+                              height: appPadding,
+                            ),
+                          if (Responsive.isMobile(context))
+                            const TopReferrals(),
+                          if (Responsive.isMobile(context))
+                            const SizedBox(
+                              height: appPadding,
+                            ),
+                          if (Responsive.isMobile(context))
+                            const UsersByDevice(),
+                        ],
+                      ),
+                    ),
+                    if (!Responsive.isMobile(context))
+                      const SizedBox(
+                        width: appPadding,
+                      ),
+                    if (!Responsive.isMobile(context))
+                      const Expanded(
+                        flex: 2,
+                        child: UsersByDevice(),
+                      ),
+                  ],
+                ),
               ],
             ),
           ],

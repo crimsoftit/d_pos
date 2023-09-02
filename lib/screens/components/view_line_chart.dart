@@ -7,16 +7,15 @@ class ViewLineChart extends StatefulWidget {
   const ViewLineChart({super.key});
 
   @override
-  _ViewLineChartState createState() => _ViewLineChartState();
+  ViewLineChartState createState() => ViewLineChartState();
 }
 
-class _ViewLineChartState extends State<ViewLineChart> {
+class ViewLineChartState extends State<ViewLineChart> {
   List<Color> gradientColors = [primaryColor, secondaryColor];
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(10, 0, 0, 0),
       padding: const EdgeInsets.fromLTRB(
         appPadding,
         appPadding * 1.5,

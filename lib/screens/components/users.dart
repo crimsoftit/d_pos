@@ -1,6 +1,6 @@
 import 'package:d_pos/constants/constants.dart';
 import 'package:d_pos/screens/components/barchart_users.dart';
-import 'package:fl_chart/fl_chart.dart';
+//import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class Users extends StatelessWidget {
