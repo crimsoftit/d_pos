@@ -63,7 +63,7 @@ class ItemsListState extends State<ItemsList> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           debugPrint('FAB clicked');
-          navigateToDetail(StockModel('', 2, ''), 'add stock item...');
+          navigateToDetail(StockModel('', 2, '', '', ''), 'add stock item...');
           //navigateToScanner();
         },
         tooltip: 'add stock item...',
@@ -89,7 +89,7 @@ class ItemsListState extends State<ItemsList> {
               stockItems[position].title,
               style: titleStyle,
             ),
-            subtitle: Text(stockItems[position].description),
+            subtitle: Text(stockItems[position].date),
             trailing: GestureDetector(
                 child: const Icon(
                   Icons.delete,

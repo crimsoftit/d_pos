@@ -5,6 +5,7 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 //import 'package:sqflite/sqflite.dart';
 import 'package:d_pos/models/stock_model.dart';
 import 'package:d_pos/db/stock_db.dart';
+import 'package:intl/intl.dart';
 //import 'package:intl/intl.dart' as intl;
 
 // ignore: must_be_immutable
@@ -32,6 +33,7 @@ class ItemDetailsState extends State<ItemDetails> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController codeController = TextEditingController();
+  TextEditingController priceController = TextEditingController();
 
   ItemDetailsState(this.stock, this.appBarTitle);
 
@@ -40,6 +42,7 @@ class ItemDetailsState extends State<ItemDetails> {
     TextStyle? textStyle = Theme.of(context).textTheme.headlineSmall;
     titleController.text = stock.title;
     descriptionController.text = stock.description;
+    priceController.text = stock.price;
 
     return Scaffold(
       appBar: AppBar(
@@ -77,7 +80,7 @@ class ItemDetailsState extends State<ItemDetails> {
 
             // second element
             Padding(
-              padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+              padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
               child: TextField(
                 controller: titleController,
                 style: textStyle,
@@ -95,7 +98,7 @@ class ItemDetailsState extends State<ItemDetails> {
 
             // third element
             Padding(
-              padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+              padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
               child: TextField(
                 controller: descriptionController,
                 style: textStyle,
@@ -113,12 +116,12 @@ class ItemDetailsState extends State<ItemDetails> {
 
             // fourth element
             Padding(
-              padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+              padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
               child: TextField(
                 controller: codeController,
                 style: textStyle,
                 onChanged: (value) {
-                  debugPrint('something changed in the description textfield');
+                  debugPrint('something changed in the barcode textfield');
                 },
                 decoration: InputDecoration(
                     labelText: 'barcode value',
@@ -129,6 +132,26 @@ class ItemDetailsState extends State<ItemDetails> {
             ),
 
             // fifth element
+            Padding(
+              padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
+              child: TextField(
+                controller: priceController,
+                style: const TextStyle(
+                  height: 2.0,
+                ),
+                onChanged: (value) {
+                  debugPrint('something changed in the price textfield');
+                  updateStockPrice();
+                },
+                decoration: InputDecoration(
+                    labelText: 'product price',
+                    labelStyle: textStyle,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0))),
+              ),
+            ),
+
+            // sixth element
             Padding(
               padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: Row(
@@ -269,10 +292,15 @@ class ItemDetailsState extends State<ItemDetails> {
     stock.description = descriptionController.text;
   }
 
+  // update the price of the stock object
+  void updateStockPrice () {
+    stock.price = priceController.text;
+  }
+
   // save data into the database
   void _save() async {
     moveToLastScreen();
-    //stock.createdTime = intl.DateFormat.yMMMd(DateTime.now()) as DateTime?;
+    stock.date = DateFormat.yMMMd().format(DateTime.now());
     int result;
     if (stock.id != null) {
       result = await StockDatabase.instance.updateStockItem(stock);

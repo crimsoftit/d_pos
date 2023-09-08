@@ -3,15 +3,21 @@ class StockModel {
   String _title = "";
   String _description = "";
   int _priority = 0;
+  String _price = "";
+  String _date = "";
 
-  StockModel(this._title, this._priority, this._description);
+  StockModel(
+      this._title, this._priority, this._description, this._price, this._date);
 
-  StockModel.withId(this._id, this._title, this._priority, this._description);
+  StockModel.withId(this._id, this._title, this._priority, this._description,
+      this._price, this._date);
 
   int? get id => _id;
   String get title => _title;
   String get description => _description;
   int get priority => _priority;
+  String get price => _price;
+  String get date => _date;
 
   set title(String newTitle) {
     if (newTitle.length <= 255) {
@@ -31,6 +37,14 @@ class StockModel {
     }
   }
 
+  set price(String newPrice) {
+    _price = newPrice;
+  }
+
+  set date(String newDate) {
+    _date = newDate;
+  }
+
   // convert a StockModel object into a Map object
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{};
@@ -40,6 +54,8 @@ class StockModel {
     map['title'] = _title;
     map['description'] = _description;
     map['priority'] = _priority;
+    map['price'] = _price;
+    map['date'] = _date;
 
     return map;
   }
@@ -50,5 +66,7 @@ class StockModel {
     _title = map['title'];
     _description = map['description'];
     _priority = map['priority'];
+    _price = map['price'];
+    _date = map['date'];
   }
 }

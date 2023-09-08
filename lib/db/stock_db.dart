@@ -16,6 +16,8 @@ class StockDatabase {
   String colTitle = 'title';
   String colDesc = 'description';
   String colPriority = 'priority';
+  String colPrice = 'price';
+  String colDate = 'date';
 
   StockDatabase._init();
 
@@ -55,20 +57,21 @@ class StockDatabase {
     const intType = 'INTEGER';
 
     await db.execute('''
-CREATE TABLE $stockTable (
-	$colId $idType,
-  $colTitle $textType,
-	$colDesc $textType,
-	$colPriority $intType 
-)
-''');
+      CREATE TABLE $stockTable (
+        $colId $idType,
+        $colTitle $textType,
+        $colDesc $textType,
+        $colPriority $intType,
+        $colPrice $textType,
+        $colDate $textType
+      )''');
   }
 
   // fetch operation: get all stock objects from the database
   Future<List<Map<String, dynamic>>> getStockMapList() async {
     Database db = await instance.database;
     // var rawResult = await db.rawQuery('SELECT * FROM $stockTable order by $colPriority');
-    var ormResult = await db.query(stockTable, orderBy: colPriority);
+    var ormResult = await db.query(stockTable, orderBy: colDate);
     return ormResult;
   }
 
