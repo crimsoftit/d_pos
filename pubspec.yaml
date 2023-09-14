@@ -83,6 +83,7 @@ flutter:
     - assets/images/photo4.jpg
     - assets/images/photo5.jpg
 
+    - assets/icons/Bell.svg
     - assets/icons/Subscribers.svg
     - assets/icons/Pages.svg
     - assets/icons/Post.svg

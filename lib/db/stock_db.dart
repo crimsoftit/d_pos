@@ -17,6 +17,7 @@ class StockDatabase {
   String colDesc = 'description';
   String colPriority = 'priority';
   String colPrice = 'price';
+  String colBcodeValue = 'bcodeValue';
   String colDate = 'date';
 
   StockDatabase._init();
@@ -63,6 +64,7 @@ class StockDatabase {
         $colDesc $textType,
         $colPriority $intType,
         $colPrice $textType,
+        $colBcodeValue $textType,
         $colDate $textType
       )''');
   }

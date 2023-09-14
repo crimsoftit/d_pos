@@ -2,12 +2,16 @@
 
 import 'dart:async';
 //import 'package:d_pos/screens/scan_screen.dart';
+import 'package:d_pos/screens/components/stock_details.dart';
+import 'package:d_pos/screens/item_details_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:d_pos/db/stock_db.dart';
 import 'package:d_pos/models/stock_model.dart';
 //import 'package:d_pos/model/stock_item.dart';
-import 'package:d_pos/screens/item_details.dart';
+//import 'package:d_pos/screens/item_details.dart';
 
 import 'b_scanner.dart';
 
@@ -23,6 +27,10 @@ class ItemsList extends StatefulWidget {
 class ItemsListState extends State<ItemsList> {
   List<StockModel> stockItems = [];
   bool isLoading = false;
+
+  ItemDetailsDialog dialog = ItemDetailsDialog();
+
+  late final StockModel stock;
 
   int count = 0;
 
@@ -63,8 +71,18 @@ class ItemsListState extends State<ItemsList> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           debugPrint('FAB clicked');
-          navigateToDetail(StockModel('', 2, '', '', ''), 'add stock item...');
+          scanBarcodeNormal();
+          //navigateToDetail(StockModel('', 2, '', '', '', ''), 'add stock item...');
           //navigateToScanner();
+          showDialog(
+            context: context,
+            builder: (BuildContext context) =>
+              dialog.buildDialog(
+                context, 
+                StockModel('', 2, '', '', '', ''),
+                true
+              ),            
+          );
         },
         tooltip: 'add stock item...',
         child: const Icon(Icons.add),
@@ -89,7 +107,7 @@ class ItemsListState extends State<ItemsList> {
               stockItems[position].title,
               style: titleStyle,
             ),
-            subtitle: Text(stockItems[position].date),
+            subtitle: Text(stockItems[position].bcodeValue),
             trailing: GestureDetector(
                 child: const Icon(
                   Icons.delete,
@@ -156,7 +174,7 @@ class ItemsListState extends State<ItemsList> {
 
   void navigateToDetail(StockModel stock, String title) async {
     await Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return ItemDetails(stock, title);
+      return StockDetails(stock, title);
     }));
     updateListView();
   }
@@ -167,6 +185,19 @@ class ItemsListState extends State<ItemsList> {
     }));
     updateListView();
   }
+
+  void scanBarcodeNormal() async {
+    String scanResults;
+
+    try {
+      scanResults = await FlutterBarcodeScanner.scanBarcode(
+          '#ff6666', 'cancel', true, ScanMode.BARCODE);
+    } on PlatformException {
+      scanResults = "ERROR!! failed to get platform version";
+    }
+    stock.bcodeValue = scanResults;  
+  }
+
 
   void updateListView() {
     final Future<Database> dbFuture =

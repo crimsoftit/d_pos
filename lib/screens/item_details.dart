@@ -151,6 +151,13 @@ class ItemDetailsState extends State<ItemDetails> {
               ),
             ),
 
+            const SizedBox(
+              width: 100.0,
+              child: TextField(
+                style: TextStyle(fontSize: 40.0, height: 2.0, color: Colors.black),
+              ),
+            ),
+
             // sixth element
             Padding(
               padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),

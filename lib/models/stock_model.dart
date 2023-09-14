@@ -4,19 +4,21 @@ class StockModel {
   String _description = "";
   int _priority = 0;
   String _price = "";
+  String _bcodeValue = "";
   String _date = "";
 
   StockModel(
-      this._title, this._priority, this._description, this._price, this._date);
+      this._title, this._priority, this._description, this._price, this._bcodeValue, this._date);
 
   StockModel.withId(this._id, this._title, this._priority, this._description,
-      this._price, this._date);
+      this._price, this._bcodeValue, this._date);
 
   int? get id => _id;
   String get title => _title;
   String get description => _description;
   int get priority => _priority;
   String get price => _price;
+  String get bcodeValue => _bcodeValue;
   String get date => _date;
 
   set title(String newTitle) {
@@ -41,6 +43,10 @@ class StockModel {
     _price = newPrice;
   }
 
+  set bcodeValue(String newbcodeValue) {
+    _bcodeValue = newbcodeValue;
+  }
+
   set date(String newDate) {
     _date = newDate;
   }
@@ -55,6 +61,7 @@ class StockModel {
     map['description'] = _description;
     map['priority'] = _priority;
     map['price'] = _price;
+    map['bcodeValue'] = _bcodeValue;
     map['date'] = _date;
 
     return map;
@@ -67,6 +74,7 @@ class StockModel {
     _description = map['description'];
     _priority = map['priority'];
     _price = map['price'];
+    _bcodeValue = map['bcodeValue'];
     _date = map['date'];
   }
 }
